@@ -1,0 +1,82 @@
+﻿@model DriverManagementWebApp.Models.delivery
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>delivery</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ParcelID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParcelID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user1.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user1.UserName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DeliveryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

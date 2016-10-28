@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="deliveries">
+      <EntityTypeMapping TypeName="Model.delivery">
+        <MappingFragment StoreEntitySet="delivery">
+          <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+          <ScalarProperty Name="ParcelID" ColumnName="ParcelID" />
+          <ScalarProperty Name="CustomerContactNo" ColumnName="CustomerContactNo" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Delivery_Driver_ID" ColumnName="Delivery_Driver_ID" />
+          <ScalarProperty Name="Delivery_DispatchManager_ID" ColumnName="Delivery_DispatchManager_ID" />
+          <ScalarProperty Name="DeliveryDateTime" ColumnName="DeliveryDateTime" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="accounts">
+      <EntityTypeMapping TypeName="Model.account">
+        <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="IsDispatchManager" ColumnName="IsDispatchManager" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactNumber" Type="int" />
+          <Property Name="IsDispatchManager" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="delivery">
+          <Key>
+            <PropertyRef Name="DeliveryID" />
+          </Key>
+          <Property Name="DeliveryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParcelID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerContactNo" Type="int" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="Delivery_Driver_ID" Type="int" />
+          <Property Name="Delivery_DispatchManager_ID" Type="int" />
+          <Property Name="DeliveryDateTime" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__delivery__Delive__71D1E811">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="delivery" Type="Self.delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="Delivery_DispatchManager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivery__Delive__72C60C4A">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="delivery" Type="Self.delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="Delivery_Driver_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="delivery" EntityType="Self.delivery" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__delivery__Delive__71D1E811" Association="Self.FK__delivery__Delive__71D1E811">
+            <End Role="account" EntitySet="account" />
+            <End Role="delivery" EntitySet="delivery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivery__Delive__72C60C4A" Association="Self.FK__delivery__Delive__72C60C4A">
+            <End Role="account" EntitySet="account" />
+            <End Role="delivery" EntitySet="delivery" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="delivery">
+          <Key>
+            <PropertyRef Name="DeliveryID" />
+          </Key>
+          <Property Name="DeliveryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParcelID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerContactNo" Type="Int32" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Delivery_Driver_ID" Type="Int32" />
+          <Property Name="Delivery_DispatchManager_ID" Type="Int32" />
+          <Property Name="DeliveryDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account" Relationship="Model.FK__delivery__Delive__71D1E811" FromRole="delivery" ToRole="account" />
+          <NavigationProperty Name="account1" Relationship="Model.FK__delivery__Delive__72C60C4A" FromRole="delivery" ToRole="account" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="deliveries" EntityType="Self.delivery" />
+          <EntitySet Name="accounts" EntityType="Model.account" />
+          <AssociationSet Name="FK__delivery__Delive__71D1E811" Association="Model.FK__delivery__Delive__71D1E811">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="delivery" EntitySet="deliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__delivery__Delive__72C60C4A" Association="Model.FK__delivery__Delive__72C60C4A">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="delivery" EntitySet="deliveries" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="Int32" />
+          <Property Name="IsDispatchManager" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="deliveries" Relationship="Model.FK__delivery__Delive__71D1E811" FromRole="account" ToRole="delivery" />
+          <NavigationProperty Name="deliveries1" Relationship="Model.FK__delivery__Delive__72C60C4A" FromRole="account" ToRole="delivery" />
+        </EntityType>
+        <Association Name="FK__delivery__Delive__71D1E811">
+          <End Type="Model.account" Role="account" Multiplicity="0..1" />
+          <End Type="Model.delivery" Role="delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="Delivery_DispatchManager_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__delivery__Delive__72C60C4A">
+          <End Type="Model.account" Role="account" Multiplicity="0..1" />
+          <End Type="Model.delivery" Role="delivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="delivery">
+              <PropertyRef Name="Delivery_Driver_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="deliveries">
+            <EntityTypeMapping TypeName="Model.delivery">
+              <MappingFragment StoreEntitySet="delivery">
+                <ScalarProperty Name="DeliveryID" ColumnName="DeliveryID" />
+                <ScalarProperty Name="ParcelID" ColumnName="ParcelID" />
+                <ScalarProperty Name="CustomerContactNo" ColumnName="CustomerContactNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Delivery_Driver_ID" ColumnName="Delivery_Driver_ID" />
+                <ScalarProperty Name="Delivery_DispatchManager_ID" ColumnName="Delivery_DispatchManager_ID" />
+                <ScalarProperty Name="DeliveryDateTime" ColumnName="DeliveryDateTime" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="Model.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="IsDispatchManager" ColumnName="IsDispatchManager" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
